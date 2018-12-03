@@ -13,7 +13,9 @@ mongoose.connect(
 
 // READY?! Let's go!
 require("./models/user");
-// require("./models/cart");
+require("./models/product");
+require("./models/wood");
+require("./models/brand");
 
 // Start our app!
 const app = require("./app");

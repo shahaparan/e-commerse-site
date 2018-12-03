@@ -1,5 +1,5 @@
 const { User } = require("../models/user");
-
+const { admin } = require("../middleware/admin");
 exports.users = (req, res) => {
   res.status(200).json({
     isAdmin: req.user.role === 0 ? false : true,
@@ -53,9 +53,10 @@ exports.login = (req, res) => {
     });
   });
 };
+
 exports.logout = (req, res) => {
-  User.findByIdAndUpdate({ _id: req.user._id }, { token: "" }, (err, doc) => {
-    if (err) return res.status(400).send({ success: false });
+  User.findByIdAndUpdate({ _id: req.user._id }, { token: " " }, (err, doc) => {
+    if (err) return res.json({ success: false, err });
     return res.status(200).send({
       success: true
     });
